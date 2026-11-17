@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHRIS FAST FOODS - Eldoret Town | Fresh & Affordable Fast Food</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+:root{--black:#171717;--orange:#F5A623;--white:#FFFFFF;--red:#B52B24}
+body{background:var(--black);color:var(--white);line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{width:100%;display:block;object-fit:cover}
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(23,23,23,.95);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:14px 5%;border-bottom:2px solid var(--orange)}
+.logo{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;line-height:1}
+.logo span{color:var(--orange)}
+.logo small{font-size:10px;letter-spacing:3px;color:#ccc;font-family:'Poppins',sans-serif}
+nav{display:flex;gap:22px;align-items:center}
+nav a{font-size:14px;font-weight:600}
+nav a:hover{color:var(--orange)}
+.btn{background:var(--orange);color:#000;padding:12px 26px;border-radius:30px;font-weight:700;border:none;cursor:pointer;display:inline-block;font-size:14px;transition:.3s}
+.btn:hover{background:var(--white);transform:translateY(-2px)}
+.btn-red{background:var(--red);color:white}
+.hamburger{display:none;font-size:26px;cursor:pointer}
+.hero{min-height:100vh;background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.75)),url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200&q=80') center/cover;display:flex;align-items:center;padding:100px 5% 40px}
+.hero-content{max-width:650px}
+.badge{background:var(--red);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;margin-bottom:16px}
+.hero h1{font-family:'Playfair Display',serif;font-size:56px;line-height:1.05}
+.hero h1 span{color:var(--orange)}
+.hero p{margin:18px 0 28px;color:#ddd;font-size:16px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-outline{background:transparent;border:2px solid var(--white);color:white;padding:11px 26px;border-radius:30px;font-weight:700;cursor:pointer}
+.hero-stats{display:flex;gap:30px;margin-top:35px}
+.hero-stats div b{font-size:22px;color:var(--orange);display:block}
+.hero-stats div span{font-size:12px;color:#ccc}
+section{padding:70px 5%}
+.section-title{text-align:center;margin-bottom:30px}
+.section-title span{color:var(--orange);font-weight:700;letter-spacing:2px;font-size:13px}
+.section-title h2{font-family:'Playfair Display',serif;font-size:36px;margin-top:6px}
+.section-title p{color:#bbb;max-width:600px;margin:10px auto 0}
+.about{background:var(--white);color:#171717;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about img{border-radius:18px;height:420px}
+.about h2{font-family:'Playfair Display',serif;font-size:36px;line-height:1.1}
+.about h2 span{color:var(--orange)}
+.about p{color:#555;margin:14px 0}
+.mission{background:#FFF7E6;border-left:5px solid var(--orange);padding:16px;border-radius:10px;margin:18px 0}
+.mission b{color:var(--red)}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.features div{background:#f5f5f5;padding:12px;border-radius:10px;font-size:13px;font-weight:600}
+.cat-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.cat-btn{background:#2a2a2a;color:white;border:1px solid #444;padding:10px 20px;border-radius:30px;cursor:pointer;font-weight:700;font-size:14px}
+.cat-btn.active{background:var(--orange);color:#000;border-color:var(--orange)}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.menu-card{background:#242424;border-radius:18px;overflow:hidden;transition:.3s;border:1px solid #333}
+.menu-card:hover{transform:translateY(-6px);border-color:var(--orange)}
+.menu-card img{height:210px}
+.menu-card-body{padding:18px}
+.menu-card-body h3{font-size:19px}
+.menu-card-body p{font-size:13px;color:#bbb;margin:8px 0}
+.menu-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.price{font-size:20px;font-weight:800;color:var(--orange)}
+.tag{background:var(--red);font-size:11px;padding:4px 10px;border-radius:20px;font-weight:700}
+.add-btn{background:var(--orange);border:none;padding:9px 16px;border-radius:20px;font-weight:700;cursor:pointer}
+.add-btn:hover{background:white}
+.offer{background:var(--red);border-radius:20px;padding:35px;display:grid;grid-template-columns:1.2fr 1fr;gap:25px;align-items:center}
+.offer h2{font-family:'Playfair Display',serif;font-size:36px;line-height:1.1}
+.offer p{margin:12px 0}
+.offer img{border-radius:15px;height:260px}
+.countdown{display:flex;gap:10px;margin:18px 0}
+.countdown div{background:rgba(0,0,0,.3);padding:10px 14px;border-radius:10px;text-align:center;min-width:65px}
+.countdown b{font-size:20px;display:block}
+.countdown span{font-size:11px}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.gallery-grid img{height:200px;border-radius:14px;cursor:pointer;transition:.3s}
+.gallery-grid img:hover{transform:scale(1.03)}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.review-card{background:#242424;padding:22px;border-radius:16px;border:1px solid #333}
+.review-card .stars{color:var(--orange);font-size:18px;margin-bottom:8px}
+.review-card p{font-size:14px;color:#ddd}
+.review-card b{display:block;margin-top:12px}
+.review-card span{font-size:12px;color:#999}
+.review-form{background:#242424;padding:22px;border-radius:16px;margin-top:22px}
+.review-form input,.review-form textarea,.review-form select{width:100%;padding:12px;border:1px solid #444;background:#171717;color:white;border-radius:10px;margin-bottom:10px}
+.map-box{background:white;color:#171717;border-radius:18px;overflow:hidden;display:grid;grid-template-columns:1fr 1.2fr}
+.map-box iframe{width:100%;height:100%;min-height:350px;border:0}
+.map-info{padding:25px}
+.cart-bar{position:fixed;bottom:20px;right:20px;background:var(--orange);color:#000;padding:14px 20px;border-radius:30px;font-weight:800;cursor:pointer;z-index:999;box-shadow:0 10px 25px rgba(0,0,0,.4)}
+.cart-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:2000;padding:15px}
+.cart-modal.open{display:flex}
+.cart-box{background:white;color:#171717;width:100%;max-width:480px;border-radius:18px;padding:22px;max-height:85vh;overflow:auto}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee;font-size:14px;gap:10px}
+.qty-btn{background:#eee;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;font-weight:800;font-size:16px}
+.remove-btn{background:#ffe8e8;color:#B52B24;border:none;padding:5px 10px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:700}
+.contact{background:white;color:#171717;display:grid;grid-template-columns:1fr 1fr;gap:35px}
+.contact-info div{background:#f7f7f7;padding:15px;border-radius:12px;margin-bottom:12px}
+.contact-info b{color:var(--red)}
+.contact form input,.contact form textarea{width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;margin-bottom:12px;font-size:14px}
+.error{color:var(--red);font-size:12px;margin:-8px 0 10px;display:none}
+footer{background:#0d0d0d;padding:45px 5% 20px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+.footer-grid h4{margin-bottom:12px;color:var(--orange)}
+.footer-grid a{display:block;margin:6px 0;color:#bbb;font-size:14px}
+.socials{display:flex;gap:10px;margin-top:12px}
+.socials a{background:#2a2a2a;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:18px}
+.copy{border-top:1px solid #333;text-align:center;padding-top:18px;margin-top:25px;color:#888;font-size:13px}
+.toast{position:fixed;bottom:90px;right:20px;background:#2e7d32;color:white;padding:14px 18px;border-radius:12px;display:none;z-index:3000;font-size:14px;font-weight:600;max-width:320px}
+@media(max-width:900px){.menu-grid{grid-template-columns:repeat(2,1fr)}.about,.contact,.offer,.map-box{grid-template-columns:1fr}.hero h1{font-size:42px}.gallery-grid{grid-template-columns:repeat(2,1fr)}.reviews-grid{grid-template-columns:1fr}}
+@media(max-width:600px){
+  nav{display:none;position:absolute;top:100%;left:0;right:0;background:#171717;flex-direction:column;padding:20px;gap:16px}
+  nav.open{display:flex}
+  .hamburger{display:block}
+  .menu-grid{grid-template-columns:1fr}
+  .hero h1{font-size:34px}
+  .footer-grid{grid-template-columns:1fr}
+  .about img{height:260px}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#home" class="logo">CHRIS <span>FAST FOODS</span><br><small>ELDORET TOWN • KENYA</small></a>
+  <nav id="navMenu">
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#menu">Menu</a>
+    <a href="#offers">Offers</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#map">Find Us</a>
+    <a href="#contact">Contact</a>
+    <a href="#menu" class="btn" style="padding:9px 18px">Order Now</a>
+  </nav>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="badge">🔥 FRESH & AFFORDABLE FAST FOOD IN ELDORET</span>
+    <h1>Taste The Best<br><span>Fast Food</span> In Eldoret Town</h1>
+    <p>Fresh burgers, crispy chicken, hot pizza & juicy hot dogs — made fresh daily, served hot & fast. Dine in, take away or order for delivery around Eldoret.</p>
+    <div class="hero-btns">
+      <button class="btn" onclick="scrollToMenu()">Order Now →</button>
+      <button class="btn-outline" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">View Menu</button>
+    </div>
+    <div class="hero-stats">
+      <div><b>Fresh Daily</b><span>Made To Order</span></div>
+      <div><b>25-35 Mins</b><span>Delivery in Eldoret</span></div>
+      <div><b>Open Daily</b><span>8am - 10pm</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80" alt="Inside Chris Fast Foods restaurant in Eldoret">
+  <div>
+    <span style="color:#B52B24;font-weight:700;letter-spacing:2px;font-size:13px">01 • ABOUT US</span>
+    <h2>We Serve Happiness,<br><span>One Bite At A Time.</span></h2>
+    <p>Chris Fast Foods is a fast-food spot in the heart of Eldoret Town. We serve students, families, workers and visitors with fresh, affordable and delicious food.</p>
+    <p>Every burger is grilled to order, every pizza is baked fresh, and our chicken is always crispy outside, juicy inside.</p>
+    <div class="mission"><b>OUR MISSION:</b> To give every customer in Eldoret fast, fresh and affordable food with a smile — every single day.</div>
+    <div class="features">
+      <div>✅ Fresh Ingredients Daily</div>
+      <div>✅ Affordable Prices</div>
+      <div>✅ Fast Delivery in Eldoret</div>
+      <div>✅ Clean & Friendly Service</div>
+    </div>
+    <button class="btn" style="margin-top:18px" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Visit Us Today</button>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="section-title">
+    <span>02 • OUR MENU & CATEGORIES</span>
+    <h2>Delicious & Affordable</h2>
+    <p>Tap a category to find food faster. Prices in Kenya Shillings.</p>
+  </div>
+  <div class="cat-btns" id="catBtns">
+    <button class="cat-btn active" onclick="filterMenu('all',this)">All</button>
+    <button class="cat-btn" onclick="filterMenu('Burgers',this)">🍔 Burgers</button>
+    <button class="cat-btn" onclick="filterMenu('Pizza',this)">🍕 Pizza</button>
+    <button class="cat-btn" onclick="filterMenu('Chicken',this)">🍗 Chicken</button>
+    <button class="cat-btn" onclick="filterMenu('Snacks',this)">🌭 Snacks</button>
+    <button class="cat-btn" onclick="filterMenu('Drinks',this)">🥤 Drinks</button>
+  </div>
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<section id="offers" style="padding-top:0">
+  <div class="offer">
+    <div>
+      <span style="background:#171717;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700">03 • LIMITED TIME OFFER - ENDS SUNDAY</span>
+      <h2 style="margin-top:14px">Buy 1 Burger,<br>Get 1 FREE Soda!</h2>
+      <p>Order any Beef Burger this week and get a free cold soda. Only at Chris Fast Foods, Eldoret.</p>
+      <div style="font-size:28px;font-weight:800">Now <span style="text-decoration:line-through;opacity:.7;font-size:18px">KSh 350</span> KSh 299 <span style="background:#F5A623;color:#000;padding:4px 10px;border-radius:20px;font-size:13px">SAVE 15%</span></div>
+      <div class="countdown">
+        <div><b id="cdD">00</b><span>Days</span></div>
+        <div><b id="cdH">00</b><span>Hours</span></div>
+        <div><b id="cdM">00</b><span>Mins</span></div>
+        <div><b id="cdS">00</b><span>Secs</span></div>
+      </div>
+      <button class="btn" style="background:#171717;color:white" onclick="grabOffer()">Grab This Offer →</button>
+      <p style="font-size:12px;opacity:.9">* Offer valid for dine-in & takeaway. One offer per customer. Ends 23 Nov 2026, 10:00 PM.</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=900&q=80" alt="Burger and fries special offer">
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+    <div style="background:#F5A623;color:#000;padding:20px;border-radius:15px"><b>🎓 STUDENT COMBO - KSh 400</b><p style="font-size:13px">Hot Dog + Chips + Soda. Show student ID.</p><button onclick="addToCartByName('Student Combo',400)" style="background:#171717;color:white;border:none;padding:9px 16px;border-radius:20px;font-weight:700;cursor:pointer;margin-top:8px">Add Combo</button></div>
+    <div style="background:white;color:#171717;padding:20px;border-radius:15px"><b>👨‍👩‍👧 FAMILY PIZZA NIGHT - KSh 1,499</b><p style="font-size:13px">Large Pizza + 4 Sodas + Chicken Wings. Fridays only.</p><button onclick="addToCartByName('Family Pizza Night',1499)" style="background:#B52B24;color:white;border:none;padding:9px 16px;border-radius:20px;font-weight:700;cursor:pointer;margin-top:8px">Add Deal</button></div>
+  </div>
+</section>
+
+<section id="gallery" style="padding-top:0">
+  <div class="section-title">
+    <span>04 • OUR FOOD GALLERY</span>
+    <h2>Looks Good, Tastes Even Better</h2>
+    <p>A taste of what we serve every day in Eldoret Town.</p>
+  </div>
+  <div class="gallery-grid">
+    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Burger">
+    <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600&q=80" alt="Pizza">
+    <img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=600&q=80" alt="Fried Chicken">
+    <!-- YOUR OWN HOT DOG PICTURE - YOU ADDED THIS FILE -->
+    <img src="https://images.unsplash.com/photo-1768250708131-23da8d1cb5ad?auto=format&fit=crop&w=800&q=80" alt="Fresh hot dog with ketchup and mustard">
+    <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600&q=80" alt="Shawarma">
+    <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600&q=80" alt="Burger and Fries">
+    <img src="https://images.unsplash.com/photo-1579888944880-d98341245702?w=600&q=80" alt="Fish and Chips">
+    <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&q=80" alt="Cold Drinks">
+  </div>
+</section>
+
+<section id="reviews" style="padding-top:0">
+  <div class="section-title">
+    <span>05 • CUSTOMER REVIEWS</span>
+    <h2>What Eldoret Says About Us</h2>
+    <p>Real reviews from real customers. Leave yours below.</p>
+  </div>
+  <div class="reviews-grid" id="reviewsGrid">
+    <div class="review-card"><div class="stars">★★★★★</div><p>"The beef burger is always fresh and the chips are crispy. My favourite place after classes."</p><b>Kevin K.</b><span>Student, Eldoret • Beef Burger</span></div>
+    <div class="review-card"><div class="stars">★★★★★</div><p>"Ordered for my family on Friday, delivery came in 30 minutes and food was still hot. Highly recommend the pizza."</p><b>Mary W.</b><span>Kapsoya • Pizza</span></div>
+    <div class="review-card"><div class="stars">★★★★☆</div><p>"Good prices and friendly staff. Hot dog with cheese is so good. Sometimes busy at lunch but worth the wait."</p><b>Brian O.</b><span>Eldoret Town • Hot Dog</span></div>
+  </div>
+  <div class="review-form">
+    <h3 style="margin-bottom:12px">Share Your Experience</h3>
+    <input type="text" id="rName" placeholder="Your Name">
+    <select id="rStars"><option value="5">★★★★★ - Excellent</option><option value="4">★★★★☆ - Very Good</option><option value="3">★★★☆☆ - Good</option></select>
+    <textarea id="rText" rows="3" placeholder="How was your food?"></textarea>
+    <button class="btn" onclick="addReview()">Post Review</button>
+  </div>
+</section>
+
+<section id="map" style="padding-top:0">
+  <div class="section-title">
+    <span>06 • FIND US ON THE MAP</span>
+    <h2>We Are In Eldoret Town</h2>
+    <p>Tap the map to get directions.</p>
+  </div>
+  <div class="map-box">
+    <div class="map-info">
+      <h3 style="font-family:'Playfair Display',serif;font-size:26px">📍 Chris Fast Foods</h3>
+      <p style="color:#555;margin:12px 0">Uganda Road, Eldoret Town, Uasin Gishu County, Kenya<br>Opposite Eldoret Main Stage, 2nd Floor</p>
+      <p style="margin-bottom:6px">🕒 <b>Mon - Sun: 8:00 AM - 10:00 PM</b></p>
+      <p style="margin-bottom:14px">📞 <b>+254 712 345 678</b> - Call / WhatsApp</p>
+      <a href="https://www.google.com/maps/search/?api=1&query=Uganda+Road+Eldoret+Town+Kenya" target="_blank" class="btn btn-red" style="color:white">📍 Get Directions on Google Maps →</a>
+      <p style="font-size:12px;color:#777;margin-top:12px">Delivery available around Eldoret Town. Delivery fee KSh 150. Free delivery for orders above KSh 1,500.</p>
+    </div>
+    <iframe src="https://www.google.com/maps?q=Uganda%20Road%2C%20Eldoret%2C%20Kenya&output=embed" loading="lazy" title="Chris Fast Foods location map - Uganda Road Eldoret"></iframe>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <span style="color:#B52B24;font-weight:700;letter-spacing:2px;font-size:13px">07 • CONTACT & ORDER</span>
+    <h2 style="font-family:'Playfair Display',serif;font-size:34px;margin:8px 0">Visit Us Or Order Now</h2>
+    <p style="color:#555;margin-bottom:18px">We are in Eldoret Town, easy to find. Call, WhatsApp or walk in.</p>
+    <div>📍 <b>Location:</b><br>Uganda Road, Eldoret Town, Uasin Gishu County, Kenya<br>Opposite Eldoret Main Stage, 2nd Floor</div>
+    <div>📞 <b>Phone / WhatsApp:</b><br><a href="tel:+254712345678" style="color:#171717;font-weight:700">+254 712 345 678</a> - REPLACE WITH YOUR REAL NUMBER</div>
+    <div>✉️ <b>Email:</b><br><a href="mailto:info@chris fastfoods.co.ke" style="color:#171717;font-weight:700">info@chris fastfoods.co.ke</a></div>
+    <div>🕒 <b>Opening Hours:</b><br>Mon - Sun: 8:00 AM - 10:00 PM<br>Delivery: 8:00 AM - 9:30 PM</div>
+    <a href="https://wa.me/254712345678?text=Hi%20Chris%20Fast%20Foods!%20I%20want%20to%20order" target="_blank" class="btn" style="background:#25D366;color:white">💬 Order on WhatsApp</a>
+  </div>
+  <div>
+    <h3 style="margin-bottom:12px">Send Us A Message - Goes to WhatsApp</h3>
+    <form id="contactForm" onsubmit="submitContact(event)" novalidate>
+      <label style="font-size:13px;font-weight:600">Your Name *</label>
+      <input type="text" id="cName" placeholder="e.g. Chris Kiprop">
+      <div class="error" id="errName">Please enter your name (at least 3 letters).</div>
+      <label style="font-size:13px;font-weight:600">Your Phone / Email *</label>
+      <input type="text" id="cEmail" placeholder="e.g. 0712 345 678 or chris@gmail.com">
+      <div class="error" id="errEmail">Please enter your phone or email so we can reply.</div>
+      <label style="font-size:13px;font-weight:600">Your Message *</label>
+      <textarea id="cMessage" rows="4" placeholder="I want to order..."></textarea>
+      <div class="error" id="errMsg">Please write a message of at least 10 characters.</div>
+      <button type="submit" class="btn btn-red" style="width:100%">Send Message on WhatsApp →</button>
+      <p style="font-size:12px;color:#777;margin-top:10px">This will open WhatsApp with your message ready to send to Chris Fast Foods.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700">CHRIS <span style="color:#F5A623">FAST FOODS</span></div>
+      <p style="color:#bbb;font-size:14px;margin-top:8px">Fresh, fast, affordable food in Eldoret Town. Taste the difference.</p>
+      <div class="socials">
+        <a href="https://facebook.com" target="_blank" title="Replace with your Facebook">📘</a>
+        <a href="https://instagram.com" target="_blank" title="Replace with your Instagram">📸</a>
+        <a href="https://tiktok.com" target="_blank" title="Replace with your TikTok">🎵</a>
+        <a href="https://wa.me/254712345678" target="_blank">💬</a>
+      </div>
+      <p style="font-size:12px;color:#888;margin-top:10px">⚠️ Replace social links above with your real pages before publishing.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#menu">Our Menu</a>
+      <a href="#offers">Special Offers</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact Us</a>
+    </div>
+    <div>
+      <h4>Opening Hours</h4>
+      <p style="color:#bbb;font-size:14px">Mon - Sun: 8am - 10pm<br>Delivery: 8am - 9:30pm<br><br>📍 Uganda Road, Eldoret</p>
+    </div>
+  </div>
+  <div class="copy">© 2026 Chris Fast Foods, Eldoret Town. All Rights Reserved. | Made with ❤️ in Eldoret, Kenya</div>
+</footer>
+
+<div class="cart-bar" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>) - KSh <span id="cartTotal">0</span> | View Order</div>
+<div class="cart-modal" id="cartModal">
+  <div class="cart-box">
+    <div style="display:flex;justify-content:space-between;align-items:center"><h3>🛒 Your Order</h3><button onclick="closeCart()" style="background:#eee;border:none;padding:6px 12px;border-radius:20px;cursor:pointer;font-weight:700">✖</button></div>
+    <div id="cartItems" style="margin-top:12px"><p style="color:#777">Your cart is empty. Add something delicious!</p></div>
+    <div style="border-top:2px solid #eee;margin-top:12px;padding-top:12px;font-size:14px">
+      <div style="display:flex;justify-content:space-between"><span>Food Total:</span><b>KSh <span id="foodTotal">0</span></b></div>
+      <div style="display:flex;justify-content:space-between;margin:6px 0"><span>Delivery (Eldoret Town):</span><b>KSh <span id="deliveryFee">0</span></b></div>
+      <div style="display:flex;justify-content:space-between;font-weight:800;font-size:16px"><span>Total to Pay:</span><span>KSh <span id="cartTotal2">0</span></span></div>
+      <p id="freeDelMsg" style="font-size:12px;color:#2e7d32;font-weight:600;margin-top:6px;display:none">🎉 Free delivery! Order is above KSh 1,500</p>
+    </div>
+    <button class="btn" style="width:100%;margin-top:12px" onclick="checkoutWhatsApp()">✅ Checkout on WhatsApp</button>
+    <button onclick="clearCart()" style="width:100%;background:#eee;border:none;padding:10px;border-radius:10px;margin-top:8px;cursor:pointer">Clear Cart</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const WHATSAPP_NUMBER = "254712345678";
+const menuItems = [
+  {name:"Beef Burger", price:350, cat:"Burgers", desc:"Juicy beef patty, cheese, lettuce, tomato & special sauce. Served with fries.", img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80", tag:"BEST SELLER"},
+  {name:"Chicken Burger", price:320, cat:"Burgers", desc:"Crispy chicken fillet, mayo, lettuce in soft bun. Served with fries.", img:"https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=800&q=80", tag:"POPULAR"},
+  {name:"Cheese Pizza", price:800, cat:"Pizza", desc:"Cheesy pepperoni pizza with fresh basil, baked in our stone oven. Large size.", img:"https://images.unsplash.com/photo-1628840042765-356cda07504e?w=800&q=80", tag:"FAMILY FAV"},
+  {name:"Chicken Pizza", price:850, cat:"Pizza", desc:"Grilled chicken, sweet corn, capsicum & mozzarella. Large size.", img:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80", tag:"NEW"},
+  {name:"Chicken & Chips", price:450, cat:"Chicken", desc:"Crispy fried chicken (2 pcs) + golden chips + ketchup. Eldoret's favourite.", img:"https://images.unsplash.com/photo-1562967914-608f82629710?w=800&q=80", tag:"CRISPY"},
+  {name:"Grilled Chicken", price:550, cat:"Chicken", desc:"Char-grilled chicken quarter + chips + coleslaw. Healthy & tasty.", img:"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80", tag:"GRILLED"},
+  // YOUR OWN HOT DOG PICTURE - YOU ADDED THIS FILE IN VS CODE
+  {name:"Hot Dog", price:250, cat:"Snacks", desc:"Grilled sausage in soft bun with melted cheese, fried onions & mustard. Our signature hot dog!", img:"https://images.unsplash.com/photo-1768250708131-23da8d1cb5ad?auto=format&fit=crop&w=800&q=80", tag:"QUICK BITE"},
+  {name:"Chicken Shawarma", price:400, cat:"Snacks", desc:"Grilled chicken strips, garlic sauce, pickles in warm wrap.", img:"https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800&q=80", tag:"NEW"},
+  {name:"Fish & Chips", price:500, cat:"Snacks", desc:"Crispy fried fish fillet + chips + tartar sauce + lemon.", img:"https://images.unsplash.com/photo-1579888944880-d98341245702?w=800&q=80", tag:"FRESH"},
+  {name:"Soda 500ml", price:100, cat:"Drinks", desc:"Ice-cold Coca-Cola, Fanta, Sprite or Stoney. Served chilled.", img:"https://images.unsplash.com/photo-1554866585-cd94860890b7?w=800&q=80", tag:"COLD"},
+  {name:"Fresh Juice", price:150, cat:"Drinks", desc:"Freshly squeezed mango, passion or orange juice. No added sugar.", img:"https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=800&q=80", tag:"FRESH"},
+  {name:"Milkshake", price:250, cat:"Drinks", desc:"Thick vanilla, chocolate or strawberry milkshake with cream.", img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&q=80", tag:"SWEET"}
+];
+let cart = [];
+let currentCat = 'all';
+function filterMenu(cat, btn){
+  currentCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  renderMenu();
+}
+function renderMenu(){
+  const grid=document.getElementById('menuGrid');
+  const list = menuItems.filter(it=> currentCat==='all' || it.cat===currentCat);
+  grid.innerHTML = list.map((item)=>{
+    const idx = menuItems.indexOf(item);
+    return `<div class="menu-card">
+      <img src="${item.img}" alt="${item.name}">
+      <div class="menu-card-body">
+        <div style="display:flex;justify-content:space-between;align-items:start"><h3>${item.name}</h3><span class="tag">${item.tag}</span></div>
+        <p>${item.desc}</p>
+        <div style="font-size:11px;color:#F5A623;font-weight:700">${item.cat.toUpperCase()}</div>
+        <div class="menu-meta"><span class="price">KSh ${item.price}</span><button class="add-btn" onclick="addToCart(${idx})">+ Add to Cart</button></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function addToCart(index){
+  const item=menuItems[index];
+  const found = cart.find(c=>c.name===item.name);
+  if(found) found.qty++;
+  else cart.push({name:item.name, price:item.price, qty:1});
+  updateCart(); showToast(`✅ ${item.name} added - KSh ${item.price}`);
+}
+function addToCartByName(name,price){
+  const found = cart.find(c=>c.name===name);
+  if(found) found.qty++; else cart.push({name, price, qty:1});
+  updateCart(); showToast(`✅ ${name} added - KSh ${price}`);
+}
+function changeQty(name, delta){
+  const it = cart.find(c=>c.name===name);
+  if(!it) return;
+  it.qty += delta;
+  if(it.qty<=0) cart = cart.filter(c=>c.name!==name);
+  updateCart();
+}
+function removeItem(name){ cart = cart.filter(c=>c.name!==name); updateCart(); showToast('Item removed'); }
+function updateCart(){
+  const foodTotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  let delivery = 0;
+  if(foodTotal>0){ delivery = foodTotal>=1500 ? 0 : 150; }
+  const total = foodTotal + delivery;
+  document.getElementById('cartCount').innerText=count;
+  document.getElementById('cartTotal').innerText=total;
+  document.getElementById('cartTotal2').innerText=total;
+  document.getElementById('foodTotal').innerText=foodTotal;
+  document.getElementById('deliveryFee').innerText=delivery;
+  document.getElementById('freeDelMsg').style.display = (foodTotal>=1500) ? 'block':'none';
+  const box=document.getElementById('cartItems');
+  if(cart.length===0){ box.innerHTML='<p style="color:#777">Your cart is empty. Add something delicious!</p>'; return; }
+  box.innerHTML=cart.map(it=>`<div class="cart-item">
+    <div style="flex:1"><b>${it.name}</b><br><span style="color:#777">KSh ${it.price} each</span></div>
+    <div style="display:flex;align-items:center;gap:6px">
+      <button class="qty-btn" onclick="changeQty('${it.name}',-1)">-</button>
+      <b>${it.qty}</b>
+      <button class="qty-btn" onclick="changeQty('${it.name}',1)">+</button>
+    </div>
+    <b>KSh ${it.price*it.qty}</b>
+    <button class="remove-btn" onclick="removeItem('${it.name}')">✖</button>
+  </div>`).join('');
+}
+function openCart(){ document.getElementById('cartModal').classList.add('open'); }
+function closeCart(){ document.getElementById('cartModal').classList.remove('open'); }
+function clearCart(){ cart=[]; updateCart(); showToast('Cart cleared'); }
+function checkoutWhatsApp(){
+  if(cart.length===0){ showToast('Your cart is empty! Add food first.'); return; }
+  const foodTotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const delivery = foodTotal>=1500 ? 0 : 150;
+  const total = foodTotal + delivery;
+  const list=cart.map(i=>`- ${i.name} x${i.qty} = KSh ${i.price*i.qty}`).join('%0A');
+  const msg=`Hi Chris Fast Foods! I want to order:%0A${list}%0A%0AFood Total: KSh ${foodTotal}%0ADelivery: KSh ${delivery}%0ATotal: KSh ${total}%0AName:%0ALocation in Eldoret:`;
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`,'_blank');
+}
+function scrollToMenu(){ document.getElementById('menu').scrollIntoView({behavior:'smooth'}); showToast('Welcome! Choose your favourite below 👇'); }
+function grabOffer(){ addToCartByName('Burger Offer - Buy 1 Get Soda FREE',299); openCart(); showToast('🎉 Offer grabbed! Burger + FREE Soda added for KSh 299'); }
+function toggleMenu(){ document.getElementById('navMenu').classList.toggle('open'); }
+function showToast(msg){ const t=document.getElementById('toast'); t.innerText=msg; t.style.display='block'; setTimeout(()=>t.style.display='none',3000); }
+function addReview(){
+  const name=document.getElementById('rName').value.trim();
+  const text=document.getElementById('rText').value.trim();
+  const stars=document.getElementById('rStars').value;
+  if(name.length<2 || text.length<5){ showToast('Please enter your name and review'); return; }
+  const starText = stars==='5' ? '★★★★★' : stars==='4' ? '★★★★☆' : '★★★☆☆';
+  const div=document.createElement('div');
+  div.className='review-card';
+  div.innerHTML=`<div class="stars">${starText}</div><p>"${text}"</p><b>${name}</b><span>Verified Customer • Eldoret</span>`;
+  document.getElementById('reviewsGrid').prepend(div);
+  document.getElementById('rName').value=''; document.getElementById('rText').value='';
+  showToast('✅ Thank you! Your review has been added.');
+}
+function submitContact(e){
+  e.preventDefault();
+  const name=document.getElementById('cName').value.trim();
+  const contact=document.getElementById('cEmail').value.trim();
+  const msg=document.getElementById('cMessage').value.trim();
+  let ok=true;
+  document.getElementById('errName').style.display = name.length<3 ? 'block':'none'; if(name.length<3) ok=false;
+  document.getElementById('errEmail').style.display = contact.length<5 ? 'block':'none'; if(contact.length<5) ok=false;
+  document.getElementById('errMsg').style.display = msg.length<10 ? 'block':'none'; if(msg.length<10) ok=false;
+  if(!ok) return;
+  const text=`Hi Chris Fast Foods!%0AName: ${encodeURIComponent(name)}%0AContact: ${encodeURIComponent(contact)}%0AMessage: ${encodeURIComponent(msg)}`;
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`,'_blank');
+  showToast('✅ Opening WhatsApp - your message is ready to send!');
+  document.getElementById('contactForm').reset();
+}
+const offerEnd = new Date('2026-11-23T22:00:00').getTime();
+function updateCountdown(){
+  const now = Date.now();
+  let diff = offerEnd - now;
+  if(diff<0) diff=0;
+  const d=Math.floor(diff/(1000*60*60*24));
+  const h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  const m=Math.floor((diff%(1000*60*60))/(1000*60));
+  const s=Math.floor((diff%(1000*60))/1000);
+  document.getElementById('cdD').innerText=String(d).padStart(2,'0');
+  document.getElementById('cdH').innerText=String(h).padStart(2,'0');
+  document.getElementById('cdM').innerText=String(m).padStart(2,'0');
+  document.getElementById('cdS').innerText=String(s).padStart(2,'0');
+}
+setInterval(updateCountdown,1000); updateCountdown();
+renderMenu(); updateCart();
+</script>
+</body>
+</html>
